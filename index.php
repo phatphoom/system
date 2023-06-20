@@ -19,7 +19,7 @@ if (!isset($_SESSION["user"])) {
 
 <body>
     <div class="container">
-        <h1 onclick="test()">Welcome to Dashboard</h1>
+        <h1>Welcome to Dashboard</h1>
         <a href="logout.php" class="btn btn-warning">Logout</a>
         <div class="row">
 

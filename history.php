@@ -1,9 +1,12 @@
 <?php
-include "database.php";
-$sql = "SELECT * FROM history";
-
-$result = $conn->query($sql);
-$conn->close();
+// include "database.php";
+$conn = mysqli_connect("localhost", "root", "", "mydb");
+if (isset($_GET["delete"]) && isset($_GET["checkbox"])) {
+    foreach ($_GET["checkbox"] as $deleteId) {
+        $delete = "DELETE FROM history WHERE id = $deleteId";
+        mysqli_query($conn, $delete);
+    }
+}
 
 ?>
 
@@ -19,10 +22,11 @@ $conn->close();
 
 <body>
     <a href="rightnow.php" class="toggleback">Back</a>
-    <form action="delcheck.php">
-        <button type="submit" name="deleteButton">delete</button>
-        <h1>History</h1>
-        <table>
+    <h1>History</h1>
+    <table>
+        <form action="" method="get">
+            <button type="submit" name="delete">Delete</button>
+
             <tr>
                 <th>ID</th>
                 <th>Words</th>
@@ -31,24 +35,25 @@ $conn->close();
             </tr>
             <?php
             // if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
+            $sql = "SELECT * FROM history";
+            $result = $conn->query($sql);
+            $i = 1;
+            // while ($row = $result->fetch_assoc()) {
+            foreach ($result as $row) :
                 $id = $row["id"];
-                $column1Value = $row["word"];
             ?>
             <tr>
-                <td><?php echo $id ?></td>
-                <td><?php echo $column1Value ?></td>
+                <td><?php echo $i++ ?></td>
+                <td><?php echo $row["word"]; ?></td>
                 <td><a href="del.php?id=<?php echo $id ?>">del</a></td>
-                <td>
-                    <input type="checkbox" name="delete[]" value="<?php $row['id'] ?>">
-                </td>
+                <td align=center> <input type="checkbox" name="checkbox[]" value="<?php echo $row['id']; ?>"> </td>
             </tr>
             <?php
-            }
+            // }
+            endforeach;
             ?>
-        </table>
-    </form>
-
+        </form>
+    </table>
 
 </body>
 

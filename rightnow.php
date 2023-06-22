@@ -1,6 +1,9 @@
 <?php
 include "database.php";
-
+session_start();
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+}
 if (isset($_POST['word'])) {
     $word = $_POST['word'];
     $url = "https://api.dictionaryapi.dev/api/v2/entries/en/" . urlencode($word);

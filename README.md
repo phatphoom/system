@@ -4,11 +4,10 @@
 
 - connect DB
 - insert data
-
-## work on it
-
 - login & register
 - create read update delete (CRUD)
+
+## work on it
 
 ## Future
 

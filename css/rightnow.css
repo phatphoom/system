@@ -7,7 +7,6 @@ body {
 
 h1 {
   margin-top: 0;
-  position: relative;
 }
 
 input[type="text"] {
@@ -53,4 +52,12 @@ input[type="text"] {
   text-decoration: none;
   color: #fff;
   background-color: #6c757d;
+}
+
+.main {
+  color: blue;
+}
+
+.cls {
+  color: #fff;
 }

@@ -27,14 +27,15 @@ $conn->close();
         </tr>
         <?php
         // if ($result->num_rows > 0) {
+        $i = 1;
         while ($row = $result->fetch_assoc()) {
             $id = $row["id"];
             $column1Value = $row["word"];
         ?>
-        <tr>
-            <td><?php echo $id ?></td>
-            <td><?php echo $column1Value ?></td>
-        </tr>
+            <tr>
+                <td><?php echo $i++ ?></td>
+                <td><?php echo $column1Value ?></td>
+            </tr>
         <?php
         }
         ?>

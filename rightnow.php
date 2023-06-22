@@ -60,39 +60,43 @@ if (isset($_POST['word'])) {
     <div class="phppages" style="display: none;">
     </div>
     <script>
-    document.getElementById('dictionaryForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        document.getElementById('dictionaryForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-        var form = event.target;
-        var formData = new FormData(form);
+            var form = event.target;
+            var formData = new FormData(form);
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                var resultContainer = document.getElementById('resultContainer');
-                resultContainer.innerHTML = xhr.responseText;
-            }
-        };
-        xhr.send(formData);
-    });
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', form.action);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    var resultContainer = document.getElementById('resultContainer');
+                    resultContainer.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send(formData);
+        });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-    $(document).ready(() => {
-        $(".histpop").click(() => {
-            $(".phppages").toggle();
-            if ($(".phppages").is(":visible")) {
-                $(".phppages").load("histpop.php")
-            } else {
-                $('#phppages').empty();
-            }
-            // $(".histpop").hide();
+        $(document).ready(() => {
+            $(".histpop").click(() => {
+                $(".phppages").toggle();
+                if ($(".phppages").is(":visible")) {
+                    $(".phppages").load("histpop.php")
+                } else {
+                    $('#phppages').empty();
+                }
+                if ($(".histpop").text() === "show history") {
+                    $(".histpop").text("hidden history")
+                } else {
+                    $(".histpop").text("show history")
+                }
+                // $(".histpop").hide();
+            })
         })
-    })
     </script>
+
 </body>
 
 </html>

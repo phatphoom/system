@@ -23,10 +23,10 @@ if (isset($_GET["delete"]) && isset($_GET["checkbox"])) {
 <body>
     <a href="rightnow.php" class="toggleback">Back</a>
     <h1>History</h1>
-    <table>
+    <table class="table">
         <form action="" method="get">
-            <button type="submit" name="delete">Delete</button>
-
+            <button type="submit" name="delete" class="delbtn">Delete</button>
+            <br>
             <tr>
                 <th>ID</th>
                 <th>Words</th>
@@ -37,17 +37,18 @@ if (isset($_GET["delete"]) && isset($_GET["checkbox"])) {
             // if ($result->num_rows > 0) {
             $sql = "SELECT * FROM history";
             $result = $conn->query($sql);
-            $i = 1;
             // while ($row = $result->fetch_assoc()) {
             foreach ($result as $row) :
                 $id = $row["id"];
             ?>
-            <tr>
-                <td><?php echo $i++ ?></td>
-                <td><?php echo $row["word"]; ?></td>
-                <td><a href="del.php?id=<?php echo $id ?>">del</a></td>
-                <td align=center> <input type="checkbox" name="checkbox[]" value="<?php echo $row['id']; ?>"> </td>
-            </tr>
+                <tr>
+                    <td><?php echo $id ?></td>
+                    <td><?php echo $row["word"]; ?></td>
+                    <td><a href="del.php?id=<?php echo $id ?>">del</a></td>
+                    <td align=center>
+                        <input type="checkbox" name="checkbox[]" value="<?php echo $row['id']; ?>">
+                    </td>
+                </tr>
             <?php
             // }
             endforeach;
